@@ -3,11 +3,12 @@ import { loadMicroApp } from 'qiankun';
 
 const Index = () => {
     useEffect(() => {
-        loadMicroApp({
-            name: 'app2',
-            entry: '//localhost:3002',
-            container: '#app2',
-        });
+        // loadMicroApp({
+        //     name: 'app2',
+        //     // entry: '//localhost:3002',
+        //     entry: '/children/app2/',
+        //     container: '#app2',
+        // });
     }, []);
     return <div id="app2" />;
 };

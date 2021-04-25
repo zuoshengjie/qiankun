@@ -4,11 +4,12 @@ import { loadMicroApp } from 'qiankun';
 const Index = () => {
   useEffect(() => {
     // 挂载子应用方式二
-    loadMicroApp({
-      name: 'app1',
-      entry: '//localhost:3001',
-      container: '#app1',
-    });
+    // loadMicroApp({
+    //   name: 'app1',
+    //   // entry: '//localhost:3001',
+    //   entry: '/children/app1/',
+    //   container: '#app1',
+    // });
   }, []);
   return <div id="app1" />;
 };

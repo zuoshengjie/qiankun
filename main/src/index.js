@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App1 from './page/App1';
-import App2 from './page/App2';
+// import App1 from './page/App1';
+// import App2 from './page/App2';
 import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -13,31 +13,39 @@ import {
 import { registerMicroApps, start } from 'qiankun';
 
 // 挂载子应用方式一
-
-// registerMicroApps([
-//   {
-//     name: 'app1',
-//     entry: '//localhost:3001',
-//     container: '#children-wrapper',
-//     activeRule: '/app1',
-//   },
-//   {
-//     name: 'app2',
-//     entry: '//localhost:3002',
-//     container: '#children-wrapper',
-//     activeRule: '/app2',
-//   },
-// ]);
-// // 启动 qiankun
-// start();
+registerMicroApps([
+  {
+    name: 'app1',
+    entry:
+      process.env.NODE_ENV === 'development'
+        ? '//localhost:3001'
+        : '/children/app1-history/',
+    container: '#children-wrapper',
+    activeRule: '/app1',
+  },
+  {
+    name: 'app2',
+    entry:
+      process.env.NODE_ENV === 'development'
+        ? '//localhost:3002'
+        : '/children/app2-history/',
+    container: '#children-wrapper',
+    activeRule: '/app2',
+  },
+]);
+// 启动 qiankun
+start();
 
 const renderRoute = (routes) => {
-  return <Switch>
-    {routes.map((route, i) => (
+  return (
+    <Switch>
+      {routes.map((route, i) => (
         <RouteWithSubRoutes key={i} {...route} />
-    ))}
-  </Switch>
-}
+      ))}
+    </Switch>
+  );
+};
+
 export function RouteWithSubRoutes(route) {
   if (route.redirect) {
     return <Redirect to={route.redirect} />;
@@ -46,9 +54,9 @@ export function RouteWithSubRoutes(route) {
     <Route
       path={route.path}
       render={(props) => (
-          <route.component {...props}  exact={true} >
-            {renderRoute(route?.routes || [])}
-          </route.component>
+        <route.component {...props} exact={true}>
+          {renderRoute(route?.routes || [])}
+        </route.component>
       )}
     />
   );
@@ -58,17 +66,17 @@ const routes = [
     path: '/',
     component: Layout,
     routes: [
-      {
-        path: '/app1',
-        component: App1,
-      },
-      {
-        path: '/app2',
-        component: App2,
-      },
+      // {
+      //   path: '/app1',
+      //   component: App1,
+      // },
+      // {
+      //   path: '/app2',
+      //   component: App2,
+      // },
       {
         path: '/',
-        redirect: '/app1',
+        redirect: '/app2',
       },
     ],
   },

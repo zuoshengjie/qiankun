@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { Switch, useHistory, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import ProLayout from '@ant-design/pro-layout';
-import { RouteWithSubRoutes } from '../index';
 import defaultProps from './_defaultProps';
 
 import styles from './index.module.less';
@@ -14,12 +13,7 @@ const Main = (props) => {
   const { location } = history;
   const { pathname } = location;
 
-  // useEffect(() => {
-  //   console.log(pathName, 'pathName');
-  //   history.push(pathName);
-  // }, [pathName, history]);
-    console.log(pathname,'pathname');
-    return (
+  return (
     <div className={styles['layout-wraper']}>
       <ProLayout
         {...defaultProps}
@@ -57,28 +51,15 @@ const Main = (props) => {
             </a>
           );
         }}
-        onMenuHeaderClick={(e) => history.push('/')}
-        menuItemRender={(item, dom) => (
-          <Link
-              to={item.path || '/'}
-            // onClick={() => {
-            //   setPathName(item.path || '/');
-            // }}
-          >
-            {dom}
-          </Link>
-        )}
+        onMenuHeaderClick={() => history.push('/')}
+        menuItemRender={(item, dom) => <Link to={item.path || '/'}>{dom}</Link>}
         rightContentRender={() => (
           <div>
             <Avatar shape="square" size="small" icon={<UserOutlined />} />
           </div>
         )}
       >
-        <div id="children-wrapper">
-            {
-                children
-            }
-        </div>
+        <div id="children-wrapper">{children}</div>
       </ProLayout>
     </div>
   );
