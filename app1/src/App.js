@@ -28,7 +28,6 @@ const Users = () => {
 };
 
 function App() {
-  console.log(window.__POWERED_BY_QIANKUN__, "window.__POWERED_BY_QIANKUN__");
   return (
     <>
       <div>app1</div>

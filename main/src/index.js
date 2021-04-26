@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import App1 from './page/App1';
 // import App2 from './page/App2';
-import App3 from './page/App3';
 import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -49,13 +48,14 @@ const renderRoute = (routes) => {
 
 export function RouteWithSubRoutes(route) {
   if (route.redirect) {
-    return <Redirect exact={true} to={route.redirect} />;
+    return (
+      <Redirect exact={true} from={route.path} to={route.redirect}></Redirect>
+    );
   } else {
     return (
       <Route
         path={route.path}
         exact={route.exact ?? (route?.routes?.length ? false : true)}
-        // exact={false}
         render={(props) => {
           return (
             <route.component {...props}>
@@ -67,14 +67,20 @@ export function RouteWithSubRoutes(route) {
     );
   }
 }
-const App4 = (props) => {
-  return <div>App4</div>;
+const App3 = () => {
+  return <div>App3</div>;
 };
+
 const routesArr = [
+  {
+    path: '/',
+    redirect: '/app1',
+  },
   {
     path: '/',
     component: Layout,
     routes: [
+      { path: 'app3', component: App3 },
       // {
       //   path: '/app1',
       //   component: App1,
@@ -83,29 +89,31 @@ const routesArr = [
       //   path: '/app2',
       //   component: App2,
       // },
-      {
-        path: '/',
-        redirect: '/app3',
-      },
-      {
-        path: '/app3',
-        component: App3,
-      },
-      {
-        path: '/app4',
-        component: App4,
-      },
     ],
   },
 ];
+
+const RouterRender = ({ routes }) => {
+  return routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />);
+};
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        {routesArr.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route} />
-        ))}
+        {routesArr.map((route, i) => {
+          if (route.redirect) {
+            return (
+              <Redirect
+                key={i}
+                exact={true}
+                from={route.path}
+                to={route.redirect}
+              />
+            );
+          }
+          return <RouteWithSubRoutes key={i} {...route} />;
+        })}
       </Switch>
     </Router>
   </React.StrictMode>,
