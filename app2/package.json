@@ -13,8 +13,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,6 +37,8 @@
     ]
   },
   "devDependencies": {
-    "@rescripts/cli": "^0.0.16"
+    "customize-cra": "^1.0.0",
+    "@rescripts/cli": "^0.0.16",
+    "react-app-rewired": "^2.1.8"
   }
 }
