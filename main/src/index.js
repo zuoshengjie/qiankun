@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import App1 from './page/App1';
 // import App2 from './page/App2';
+import App3 from './page/App3';
 import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -39,29 +40,37 @@ start();
 const renderRoute = (routes) => {
   return (
     <Switch>
-      {routes.map((route, i) => (
-        <RouteWithSubRoutes key={i} {...route} />
-      ))}
+      {routes.map((route, i) => {
+        return <RouteWithSubRoutes key={i} {...route} />;
+      })}
     </Switch>
   );
 };
 
 export function RouteWithSubRoutes(route) {
   if (route.redirect) {
-    return <Redirect to={route.redirect} />;
+    return <Redirect exact={true} to={route.redirect} />;
+  } else {
+    return (
+      <Route
+        path={route.path}
+        exact={route.exact ?? (route?.routes?.length ? false : true)}
+        // exact={false}
+        render={(props) => {
+          return (
+            <route.component {...props}>
+              {renderRoute(route?.routes || [])}
+            </route.component>
+          );
+        }}
+      />
+    );
   }
-  return (
-    <Route
-      path={route.path}
-      render={(props) => (
-        <route.component {...props} exact={true}>
-          {renderRoute(route?.routes || [])}
-        </route.component>
-      )}
-    />
-  );
 }
-const routes = [
+const App4 = (props) => {
+  return <div>App4</div>;
+};
+const routesArr = [
   {
     path: '/',
     component: Layout,
@@ -76,7 +85,15 @@ const routes = [
       // },
       {
         path: '/',
-        redirect: '/app2',
+        redirect: '/app3',
+      },
+      {
+        path: '/app3',
+        component: App3,
+      },
+      {
+        path: '/app4',
+        component: App4,
       },
     ],
   },
@@ -86,7 +103,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        {routes.map((route, i) => (
+        {routesArr.map((route, i) => (
           <RouteWithSubRoutes key={i} {...route} />
         ))}
       </Switch>

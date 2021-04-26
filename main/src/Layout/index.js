@@ -12,7 +12,7 @@ const Main = (props) => {
   let history = useHistory();
   const { location } = history;
   const { pathname } = location;
-
+  
   return (
     <div className={styles['layout-wraper']}>
       <ProLayout

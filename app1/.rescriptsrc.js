@@ -6,7 +6,6 @@ module.exports = {
     if (process.env.NODE_ENV !== "development") {
       config.output.publicPath = "/children/app1-history/";
     }
-    config.output.path = path.resolve(__dirname, "build/app1-history");
     config.output.library = `${name}-[name]`;
     config.output.libraryTarget = "umd";
     config.output.jsonpFunction = `webpackJsonp_${name}`;

@@ -17,6 +17,18 @@ export default {
         icon: <SmileOutlined />,
         component: './Welcome',
       },
+      {
+        path: '/app3',
+        name: 'app3',
+        icon: <SmileOutlined />,
+        // component: './A',
+      },
+      {
+        path: '/app4',
+        name: 'app4',
+        icon: <SmileOutlined />,
+        // component: './A',
+      },
     ],
   },
   location: {
