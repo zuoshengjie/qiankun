@@ -18,6 +18,7 @@ npm run start
 ```
 
 主应用main（默认打开）
+
 open http://localhost:3000
 
 app1
