@@ -33,4 +33,6 @@ http://localhost:3002
 npm run build
 ```
 
+> 打包后微应用及主应用文件在根目录build文件夹 直接使用即可
+
 ## 因使用browser路由 打包后需要nginx配置解决刷新 404 的问题 具体配置见nginx.conf
