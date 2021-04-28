@@ -34,4 +34,3 @@ npm run build
 > 主应用需nginx代理 具体见nginx.conf
 > 微应用则直接使用即可
 
-## 因使用browser路由 打包后需要nginx配置解决刷新 404 的问题
