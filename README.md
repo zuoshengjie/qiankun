@@ -1,17 +1,23 @@
 # create-react-app 的qiankun微应用方案
 
 
-## 安装依赖及启动
+## 安装依赖
 
 ```bash
-cd main && yarn && yarn start 
+cd main && yarn
 
-cd ../app1 && yarn && yarn start
+cd ../app1 && yarn
 
-cd ../app2 && yarn && yarn start
+cd ../app2 && yarn 
 ```
 
-主应用main
+## 启动
+
+```bash
+npm run start
+```
+
+主应用main（默认打开）
 open http://localhost:3000
 
 app1
@@ -23,11 +29,7 @@ http://localhost:3002
 ## 打包
 
 ```bash
-cd main && npm run build
-
-cd ../app1 && npm run build
-
-cd ../app2 && npm run build
+npm run build
 ```
 
-## 因使用browser路由 打包后需要nginx配置解决刷新 404 的问题
+## 因使用browser路由 打包后需要nginx配置解决刷新 404 的问题 具体配置见nginx.conf
