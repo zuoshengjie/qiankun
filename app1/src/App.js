@@ -31,11 +31,7 @@ function App() {
   return (
     <>
       <div>app1</div>
-      <Router
-        basename={
-          window.__POWERED_BY_QIANKUN__ ? "/" : "/children/app1-history/"
-        }
-      >
+      <Router>
         <Switch>
           <Route exact={true} path="/app1">
             <div className="App">

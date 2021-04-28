@@ -37,8 +37,10 @@
     ]
   },
   "devDependencies": {
-    "customize-cra": "^1.0.0",
     "@rescripts/cli": "^0.0.16",
+    "copy-webpack-plugin": "^6.4.1",
+    "copys-plugin": "^1.0.7",
+    "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.8"
   }
 }

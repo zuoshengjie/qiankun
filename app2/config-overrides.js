@@ -1,5 +1,11 @@
 const { name } = require("./package");
-const { override, addLessLoader, overrideDevServer } = require("customize-cra");
+const {
+  override,
+  addLessLoader,
+  overrideDevServer,
+  addWebpackPlugin,
+} = require("customize-cra");
+const CopysPlugin = require("copys-plugin");
 
 // 跨域配置
 const devServerConfig = () => (config) => {
@@ -16,7 +22,7 @@ const devServerConfig = () => (config) => {
 // 打包配置
 const addCustomize = () => (config) => {
   if (process.env.NODE_ENV !== "development") {
-    config.output.publicPath = "/children/app2-history/";
+    config.output.publicPath = "/app2-history/";
   }
   config.output.library = `${name}-[name]`;
   config.output.libraryTarget = "umd";
@@ -26,6 +32,14 @@ const addCustomize = () => (config) => {
 };
 
 module.exports = {
-  webpack: override(addCustomize()),
+  webpack: override(
+    addCustomize(),
+    addWebpackPlugin(
+      new CopysPlugin({
+        from: "./build/static",
+        to: "./build/app2-history/static",
+      })
+    )
+  ),
   devServer: overrideDevServer(devServerConfig()),
 };

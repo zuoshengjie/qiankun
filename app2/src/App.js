@@ -4,9 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <Router
-      basename={window.__POWERED_BY_QIANKUN__ ? "/" : "/children/app2-history/"}
-    >
+    <Router>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

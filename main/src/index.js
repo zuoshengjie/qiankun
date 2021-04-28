@@ -19,7 +19,7 @@ registerMicroApps([
     entry:
       process.env.NODE_ENV === 'development'
         ? '//localhost:3001'
-        : '/children/app1-history/',
+        : '/app1-history/',
     container: '#children-wrapper',
     activeRule: '/app1',
   },
@@ -28,7 +28,7 @@ registerMicroApps([
     entry:
       process.env.NODE_ENV === 'development'
         ? '//localhost:3002'
-        : '/children/app2-history/',
+        : '/app2-history/',
     container: '#children-wrapper',
     activeRule: '/app2',
   },
